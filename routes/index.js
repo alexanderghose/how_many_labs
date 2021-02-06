@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 let { GoogleSpreadsheet } = require('google-spreadsheet');
-let creds = require('../client_secret.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
