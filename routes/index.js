@@ -15,7 +15,19 @@ router.get("/36", async function(req, res){
   //   return res.send("error")
   // }
   try {
-    var doc = new GoogleSpreadsheet(process.env.SEI_36_DELIVERABLES_SHEET);  
+    var doc = new GoogleSpreadsheet(process.env.SEI_36_DELIVERABLES_SHEET);
+    creds = {
+      type: process.env.CREDS_type,
+      project_id: process.env.CREDS_project_id,
+      private_key_id: process.env.CREDS_private_key_id,
+      private_key: process.env.CREDS_private_key.replace(new RegExp("\\\\n", "\g"), "\n"),
+      client_email:process.env.CREDS_client_email,
+      client_id:process.env.CREDS_client_id,
+      auth_uri:process.env.CREDS_auth_uri,
+      token_uri:process.env.CREDS_token_uri,
+      auth_provider_x509_cert_url: process.env.CREDS_auth_provider_x509_cert_url,
+      client_x509_cert_url:process.env.CREDS_client_x509_cert_url,
+    }
     await doc.useServiceAccountAuth(creds) // Authentication
     await doc.loadInfo()
     const sheet = doc.sheetsByIndex[7]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
@@ -34,7 +46,8 @@ router.get("/36", async function(req, res){
     res.render('labs.ejs', {labs});
 
   } catch(error) {
-    res.status(500).send({error: error})
+    console.log(error)
+    res.status(500).send({error:"there was an error"})
   }
 });
 
