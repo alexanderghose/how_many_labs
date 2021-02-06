@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                  <div class="card-img">
+                <label for="sel" style="padding: 20px">Select your codename:</label>
+                <select id="sel" onchange=update()>
+                    <option selected=""></option>
+                    <% for (let lab of labs) { %>
+                        <option value="<%= lab.completedLabs %>"><%= lab.codename %></option>
+                    <% } %>
+                </select>
+                <hr>
+            </div>
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title" id="title"></h5>
+                  <p class="card-text" id="msg"></p>
+                  <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <script>    
+        function update() {
+            var selectedOption = document.getElementById('sel');
+            let text = selectedOption.options[selectedOption.selectedIndex].text;
+            let value = selectedOption.options[selectedOption.selectedIndex].value;
+            document.getElementById('title').innerHTML= text;
+            var msg = document.getElementById('msg');
+            msg.innerHTML = `Codename ${text} has completed ${value} labs`
+        }
+    </script>    
+</body>
+</html>
