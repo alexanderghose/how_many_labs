@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="padding:20px">
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row no-gutters">
               <div class="col-md-4">
@@ -27,7 +27,7 @@
                 <div class="card-body">
                   <h5 class="card-title" id="title"></h5>
                   <p class="card-text" id="msg"></p>
-                  <p class="card-text"><small class="text-muted"></small></p>
+                  <p class="card-text"><small class="text-muted">It is required that you complete at least 14 of the 18 assigned labs (80%).</small></p>
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
             let value = selectedOption.options[selectedOption.selectedIndex].value;
             document.getElementById('title').innerHTML= text;
             var msg = document.getElementById('msg');
-            msg.innerHTML = `Codename ${text} has completed ${value} labs`
+            msg.innerHTML = `Codename ${text} has completed ${value} labs! Great job!`
         }
     </script>    
 </body>
