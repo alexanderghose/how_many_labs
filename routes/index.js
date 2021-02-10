@@ -78,7 +78,7 @@ router.get("/36", async function(req, res){
     let first_valid_row = 4;
     let last_valid_row = 14;
     let labs = [];
-    await sheet.loadCells(`A${first_valid_row}:D${last_valid_row}`);
+    await sheet.loadCells(`A${first_valid_row}:E${last_valid_row+3}`);
     // getCell is zero-indexed. so for row A1 it's getCell(0,0).
     for (let row = first_valid_row-1; row <= last_valid_row-1; row++) {
       obj = {
@@ -87,7 +87,9 @@ router.get("/36", async function(req, res){
       };
       labs.push(obj);
     }
-    res.render('labs.ejs', {labs});
+    let lastUpdated = sheet.getCell(15,4).value
+    let lastUpdatedBy = sheet.getCell(16,4).value
+    res.render('labs.ejs', {labs, lastUpdated, lastUpdatedBy});
 
   } catch(error) {
     console.log(error)
