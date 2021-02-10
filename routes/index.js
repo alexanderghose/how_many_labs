@@ -31,7 +31,7 @@ router.get("/37", async function(req, res){
     await doc.loadInfo()
     const sheet = doc.sheetsByIndex[7]; // or use doc.sheetsById[id] or doc.sheetsByTitle[title]
     let first_valid_row = 4;
-    let last_valid_row = 14;
+    let last_valid_row = 18;
     let labs = [];
     await sheet.loadCells(`A${first_valid_row}:E21`);
     // getCell is zero-indexed. so for row A1 it's getCell(0,0).
